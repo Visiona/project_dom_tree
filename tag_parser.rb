@@ -147,6 +147,14 @@ end
 #   end
 # end
 
+=begin
+
+create the first node
+check if there is anything left in the html string
+- if there is see if it's starting
+
+=end
+
 puts "The output should be:"
 outputter(data_structure)
 
