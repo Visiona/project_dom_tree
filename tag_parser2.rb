@@ -12,17 +12,6 @@ def parse_tag_to_tree(html_str)
   parser
 end
 
-# def detect_first_html_tag(html_str)
-#   case html_str
-#   when (/<[^\/].*?>/ =~ html_str) == 0
-#     "open_tag"
-#   when (/<[\/].*?>/ =~ html_str) == 0
-#     "close_tag"
-#   when (/[a-z]/ =~ html_str) == 0
-#     "text"
-#   end
-# end
-
 def detect_first_open_tag(html_str)
   (/<[^\/].*?>/ =~ html_str) == 0
 end
@@ -52,7 +41,6 @@ def building_text_child(current_node, html_str)
   text_node.text_content = html_str[0 ... (/</ =~ html_str)]
   text_node.children = nil
   text_node.parents = current_node
-  puts "DBG: text_node = #{text_node.inspect}"
   current_node.children << text_node
   current_node
 end
@@ -68,92 +56,43 @@ def get_trimmed_html(html_str)
   end
 end
 
-def parser_script(html_str, current_node = build_root_get(html_str))
-  puts "DBG: current_node = #{current_node.inspect}"
+def parser_script(html_str)
+  root = build_root_get(html_str)
+  current_node = root
   current_html = get_trimmed_html(html_str)
-  puts "DBG: current_html_start = #{current_html.inspect}"
-  puts "DBG: current_node.type = #{current_node.type.inspect}"
-  while current_html.length != 0
+  while current_html.length > 0
     if detect_first_open_tag(current_html)
       current_node = building_tag_child(current_node, current_html)
-      puts "DBG: current_html_open = #{current_html.inspect}"
-      current_node.children.each {|child| parser_script(current_html, child) if child.type != "text"}
+      current_html = get_trimmed_html(current_html)
+      current_node = current_node.children.last
     elsif detect_first_close_tag(current_html)
       current_node = current_node.parents
       current_html = get_trimmed_html(current_html)
-      "DBG: current_html_in_close = #{current_html.inspect}"
     elsif detect_first_text(current_html)
       current_node = building_text_child(current_node, current_html)
       current_html = get_trimmed_html(current_html)
-      "DBG: current_html_in_text = #{current_html.inspect}"
     end
-    puts "DBG: current_html_after_if = #{current_html.inspect}"
   end
-  current_node
+  root
 end
 
-
-# def chop_html_opening_tag(html_str, closing_tag_idx)
-#   html_str[closing_tag_idx+1..-1]
-# end
-
-# def index_of_first_opening_tag(html_str)
-#   (/<[^\/].*?>/ =~ html_str)
-# end
-
-# def index_of_first_closing_tag(html_str)
-#   (/<[\/].*?>/ =~ html_str)
-# end
-
-
-
-
-# def parser_script(html_str)
-#   current_node = nil
-#   while html_str.length != 0
-#     if index_of_first_opening_tag(html_str) == 0 # ie. <p>
-#       closing_tag_idx = (/>/ =~ html_str)
-#       if current_node == nil
-#         current_node = parse_tag_to_tree(html_str[0..closing_tag_idx])
-#         html_str = chop_html_opening_tag(html_str, closing_tag_idx)
-#       else
-#         new_tag_node = parse_tag_to_tree(html_str[0..closing_tag_idx])
-#         new_tag_node.parents = current_node
-#         current_node.children << new_tag_node
-#         current_node = new_tag_node
-#         html_str = chop_html_opening_tag(html_str, closing_tag_idx)
-#       end
-#     elsif index_of_first_closing_tag(html_str) == 0 #ie. </p>
-#       current_node = current_node.parents
-#       closing_tag_idx = (/>/ =~ html_str)
-#       html_str = html_str[closing_tag_idx+1..-1]
-#     else # ie. >  text <
-#       closing_tag_idx = (/</ =~ html_str) # index of closing tag
-#       new_tag_node = parse_tag_to_tree(html_str[0...closing_tag_idx])
-#       new_tag_node.parents = current_node
-#       current_node.children << new_tag_node
-#       current_node = new_tag_node
-#       html_str = html_str[closing_tag_idx..-1]
-#     end
-#   end
-#   current_node
-# end
-
-=begin
 def opening_tag_printer(current_node)
   if current_node.type != "text"
+    puts
     print "<#{current_node.type}"
     print " class=#{current_node.classes}" if current_node.classes != []
     print " id=#{current_node.classes}" if current_node.id != ""
     print " name=#{current_node.name}" if current_node.name != ""
     print ">"
   else
+    puts
     print "#{current_node.text_content}"
   end
 end
 
 def closing_tag_printer(current_node)
   if current_node.type != "text"
+    puts
     print "</#{current_node.type}"
     print ">"
   end
@@ -162,19 +101,20 @@ end
 def outputter(data_structure)
   current_node = data_structure
   opening_tag_printer(current_node)
-  if current_node.children == []
-    closing_tag_printer(current_node.parents)
-    puts
-  end
-  current_node.children.each do |child|
-    outputter(child)
+  if current_node.children != nil
+    current_node.children.each do |child|
+      outputter(child)
+      if child.children == nil || child.children == []
+        closing_tag_printer(current_node) if child == current_node.children.last
+      end
+    end
   end
 end
-=end
-html_str = "<div>  div text before  <p>    p text  </p>  </div>"
 
-puts "#{parser_script(html_str)}"
+html_str = "<div>  div text before  <p>    p text  </p>  <div>    more div text  </div>  div text after</div>"
 
-# data_structure = parser_script(html_str)
-# puts "PRINT OUT"
-# outputter(data_structure)
+data_structure = parser_script(html_str)
+
+puts "DBG: data_structure = #{data_structure.inspect}"
+puts "PRINT OUT"
+outputter(data_structure)
