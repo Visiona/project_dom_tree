@@ -1,4 +1,60 @@
 
+# PSEUDOCODE
+#Warmup 3: Pseudocoding the Design
+# 1. Include extra tags in pearser
+# classes
+# should I include depth so I can output correct positioning?
+# I should inlcide types like em or span which doesn't change ilne in printing
+
+
+# HtmlLoader
+
+# TreeBuilder
+# reader = DOMReader.new
+# tree = reader.build_tree("test.html")
+
+# TreeSearcher
+
+# ResultsSaver
+
+# NodeRenderer
+# takes in a tree and allows you to output key statistics about any of its nodes and their sub-trees.
+# This function outputs simple statistics for a particular node, including:
+
+# How many total nodes there are in the sub-tree below this node
+# A count of each node type in the sub-tree below this node
+# All of the node's data attributes
+
+# You should be able to pass nil to receive statistics for the entire document (the root node).
+
+# renderer = NodeRenderer.new(tree)
+# renderer.render(some_node)
+# # ...output...
+
+# DOMRebuilder
+
+# Warmup 1: Parsing Tags
+def parse_tag(html_str)
+  node = Struct.new(:type, :classes, :id, :name)
+  parser = node.new
+  parser.type = html_str.scan(/<[a-z0-9]+/).join[1..-1]
+  parser.classes = html_str.scan(/class='(.*?)'/).join.split(" ")
+  parser.id = html_str.scan(/id='(.*?)'/).join
+  parser.name = html_str.scan(/name='(.*?)'/).join
+  parser
+end
+
+# tag = parse_tag("<p class='foo bar' id='baz'>")
+# tag.type 
+# #=> "p"
+# tag.classes 
+# #=> ["foo", "bar"]
+# tag.id 
+# #=> "baz"
+# tag.name 
+# #=> "fozzie"
+
+# Warmup 2: Storing Tags in a Data Structure
 
 def parse_tag_to_tree(html_str)
   node = Struct.new(:type, :classes, :id, :name, :text_content, :children, :parents)
