@@ -93,10 +93,10 @@ describe DOMReader do
 
     describe "tree have the correct number of total nodes" do
       let(:reader2) { DOMReader.new}
-      let(:root_node2) {reader2.build_tree("spec/small.html")}
 
       it "checking total number of nodes" do
-        expect(reader2.nodes_number).to eq(10)
+        reader2.build_tree("spec/small.html")
+        expect(reader2.nodes_number).to eq(13)
       end
 
     end
