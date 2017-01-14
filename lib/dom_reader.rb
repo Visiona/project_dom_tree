@@ -3,7 +3,11 @@ require_relative "dom_rebuilder"
 require_relative "tree_searcher"
 
 class DOMReader
-  attr_accessor :root
+  attr_accessor :root, :type, :classes, :id, :name, :text_content, :children, :parents, :nodes_number
+
+  def initialize
+    @nodes_number = 1
+  end
 
   def load_html(file_location)
     HtmlLoader.new(file_location).load
@@ -11,7 +15,7 @@ class DOMReader
 
   def build_tree(file_location = "test.html")
     document = load_html(file_location)
-    @root = build_root(document)
+    root = build_root(document)
     current_node = root
     current_html = remaininng_html(document)
     while current_html.length > 0
@@ -19,15 +23,17 @@ class DOMReader
         current_node = building_tag_child(current_node, current_html)
         current_html = remaininng_html(current_html)
         current_node = current_node.children.last
+        @nodes_number += 1
       elsif detect_first_close_tag(current_html)
         current_node = current_node.parents
         current_html = remaininng_html(current_html)
       elsif detect_first_text(current_html)
+        @nodes_number += 1
         current_node = building_text_child(current_node, current_html)
         current_html = remaininng_html(current_html)
       end
     end
-    @root
+    root
   end
 
   private
@@ -37,7 +43,6 @@ class DOMReader
     node = Struct.new(:type, :classes, :id, :name, :text_content, :children, :parents)
     parsed_tag = node.new
     parsed_tag.type = ""
-
     match_class_data = first_tag.match(/class=('|")(.*?)('|")>/)
     match_class_data ? parsed_tag.classes = match_class_data[2] : parsed_tag.classes = ""
 
