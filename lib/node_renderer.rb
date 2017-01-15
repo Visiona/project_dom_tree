@@ -1,27 +1,27 @@
 require_relative "dom_reader"
 
 class NodeRenderer
+  attr_reader :types, :counter
 
   def initialize(tree)
     @tree = tree
+    @types = {}
+    @counter = 0
   end
 
   def render(some_node = @tree)
-    puts "There are #{nodes_counter} total nodes in the sub-tree below this node"
-    puts "There are following node type with adequate frequency in the sub-tree below this node"
-    puts "#{get_types}"
-    puts "There are following attributes in this node"
+    node_types_frequencies(some_node)
+    puts "Total number of nodes below this node:"
+    puts "#{@counter}"
+    puts "Nodes types and occurrences below this node:"
+    get_types
+    puts "Attributes in this node"
     puts "#{get_node_data_attributes(some_node)}"
   end
 
   private
 
-  def nodes_counter
-    @counter = 0
-  end
-
   def get_types
-    @types = {}
     @types.each {|key, value| puts "#{key} : #{value}"}
   end
 
@@ -30,10 +30,10 @@ class NodeRenderer
       some_node.children.each do |child|
         @counter += 1
         node_types_frequencies(child)
-        if @types.(child.type) != nil
+        if @types[child.type] != nil
           @types[child.type] += 1
         else
-          @types[child.type] = 0
+          @types[child.type] = 1
         end
       end
     end
@@ -41,15 +41,15 @@ class NodeRenderer
 
   def get_node_data_attributes(some_node)
     puts "type: #{some_node.type}"
-    puts "class: #{some_node.classes}"
-    puts "id #{some_node.id}"
-    puts "name #{some_node.name}"
+    puts "class: #{some_node.classes.split( ).join(',')}" if some_node.classes != ""
+    puts "id: #{some_node.id}" if some_node.id != ""
+    puts "name: #{some_node.name}" if some_node.name != ""
   end
 
 end
 
-reader = TreeBuilder.new
-tree = reader.build_tree
+# reader = DOMReader.new
+# tree = reader.build_tree("test.html")
 
-renderer = NodeRenderer.new(tree)
-renderer.render()
+# renderer = NodeRenderer.new(tree)
+# renderer.render()

@@ -3,23 +3,6 @@ require "html_loader.rb"
 
 describe DOMReader do
 
-  # let(:test_html) do "<html>
-  #                 <head>
-  #                   <title>
-  #                     This is a test page
-  #                   </title>
-  #                 </head>
-  #                 <body>
-  #                   <div class=\"top-div\">
-  #                     I'm an outer div!!!
-  #                     <div class=\"inner-div\">
-  #                       I'm an inner div!!! I might just <em>emphasize</em> some text.
-  #                     </div>
-  #                     I am EVEN MORE TEXT for the SAME div!!!
-  #                   </div>
-  #                 </body>
-  #               </html>" 
-  # end
   let(:reader) { DOMReader.new }
   let(:root_node) { reader.build_tree("lib/test.html") }
 

@@ -1,9 +1,8 @@
 require_relative "html_loader"
 require_relative "dom_rebuilder"
-require_relative "tree_searcher"
 
 class DOMReader
-  attr_accessor :root, :type, :classes, :id, :name, :text_content, :children, :parents, :nodes_number
+  attr_reader :root, :type, :classes, :id, :name, :text_content, :children, :parents, :nodes_number
 
   def initialize
     @nodes_number = 1

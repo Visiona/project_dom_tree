@@ -2,11 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="acbeb12e-7427-4aa0-9616-b09c232ddacb" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/html_loader.rb" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/test.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tree_builder.rb" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/project_dom_tree.iml" afterPath="$PROJECT_DIR$/.idea/project_dom_tree.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/dom_reader.rb" afterPath="$PROJECT_DIR$/lib/dom_reader.rb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/node_renderer.rb" afterPath="$PROJECT_DIR$/lib/node_renderer.rb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/tree_searcher.rb" afterPath="$PROJECT_DIR$/lib/tree_searcher.rb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/spec/dom_reader_spec.rb" afterPath="$PROJECT_DIR$/spec/dom_reader_spec.rb" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -20,6 +20,7 @@
     <SUITE FILE_PATH="coverage/project_dom_tree@node_renderer.coverage" NAME="node_renderer Coverage Results" MODIFIED="1484252671146" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/lib" MODULE_NAME="project_dom_tree" />
     <SUITE FILE_PATH="coverage/project_dom_tree@tree_builder.coverage" NAME="tree_builder Coverage Results" MODIFIED="1484174915002" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="project_dom_tree" />
     <SUITE FILE_PATH="coverage/project_dom_tree@tag_parser2.coverage" NAME="tag_parser2 Coverage Results" MODIFIED="1484165884060" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="project_dom_tree" />
+    <SUITE FILE_PATH="coverage/project_dom_tree@tree_searcher.coverage" NAME="tree_searcher Coverage Results" MODIFIED="1484504891878" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/lib" MODULE_NAME="project_dom_tree" />
   </component>
   <component name="CreatePatchCommitExecutor">
     <option name="PATCH_PATH" value="" />
@@ -27,8 +28,8 @@
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="tree_builder.rb" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/lib/tree_builder.rb">
+      <file leaf-file-name="node_renderer.rb" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/lib/node_renderer.rb">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="0">
               <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
@@ -37,11 +38,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="node_renderer.rb" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/lib/node_renderer.rb">
+      <file leaf-file-name="tree_searcher.rb" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/lib/tree_searcher.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-187">
-              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+            <state relative-caret-position="251">
+              <caret line="79" column="0" lean-forward="false" selection-start-line="79" selection-start-column="0" selection-end-line="79" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -61,6 +62,7 @@
         <option value="$PROJECT_DIR$/tree_builder.rb" />
         <option value="$PROJECT_DIR$/lib/tree_builder.rb" />
         <option value="$PROJECT_DIR$/lib/node_renderer.rb" />
+        <option value="$PROJECT_DIR$/lib/tree_searcher.rb" />
       </list>
     </option>
   </component>
@@ -146,7 +148,7 @@
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="js.eslint.eslintPackage" value="" />
   </component>
-  <component name="RunManager" selected="Ruby.node_renderer">
+  <component name="RunManager" selected="Ruby.tree_searcher">
     <configuration default="false" name="tag_parser" type="RubyRunConfigurationType" factoryName="Ruby" temporary="true">
       <module name="project_dom_tree" />
       <RUBY_RUN_CONFIG NAME="RUBY_ARGS" VALUE="-e $stdout.sync=true;$stderr.sync=true;load($0=ARGV.shift)" />
@@ -220,6 +222,25 @@
         </COVERAGE_PATTERN>
       </EXTENSION>
       <RUBY_RUN_CONFIG NAME="SCRIPT_PATH" VALUE="$MODULE_DIR$/lib/node_renderer.rb" />
+      <RUBY_RUN_CONFIG NAME="SCRIPT_ARGS" VALUE="" />
+      <method />
+    </configuration>
+    <configuration default="false" name="tree_searcher" type="RubyRunConfigurationType" factoryName="Ruby" temporary="true">
+      <module name="project_dom_tree" />
+      <RUBY_RUN_CONFIG NAME="RUBY_ARGS" VALUE="-e $stdout.sync=true;$stderr.sync=true;load($0=ARGV.shift)" />
+      <RUBY_RUN_CONFIG NAME="WORK DIR" VALUE="$MODULE_DIR$/lib" />
+      <RUBY_RUN_CONFIG NAME="SHOULD_USE_SDK" VALUE="false" />
+      <RUBY_RUN_CONFIG NAME="ALTERN_SDK_NAME" VALUE="" />
+      <RUBY_RUN_CONFIG NAME="myPassParentEnvs" VALUE="true" />
+      <envs />
+      <EXTENSION ID="BundlerRunConfigurationExtension" bundleExecEnabled="false" />
+      <EXTENSION ID="JRubyRunConfigurationExtension" NailgunExecEnabled="false" />
+      <EXTENSION ID="RubyCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" track_test_folders="true" runner="rcov">
+        <COVERAGE_PATTERN ENABLED="true">
+          <PATTERN REGEXPS="/.rvm/" INCLUDED="false" />
+        </COVERAGE_PATTERN>
+      </EXTENSION>
+      <RUBY_RUN_CONFIG NAME="SCRIPT_PATH" VALUE="$MODULE_DIR$/lib/tree_searcher.rb" />
       <RUBY_RUN_CONFIG NAME="SCRIPT_ARGS" VALUE="" />
       <method />
     </configuration>
@@ -359,18 +380,20 @@
       <envs />
       <method />
     </configuration>
-    <list size="4">
+    <list size="5">
       <item index="0" class="java.lang.String" itemvalue="Ruby.tag_parser" />
       <item index="1" class="java.lang.String" itemvalue="Ruby.tag_parser2" />
       <item index="2" class="java.lang.String" itemvalue="Ruby.tree_builder" />
       <item index="3" class="java.lang.String" itemvalue="Ruby.node_renderer" />
+      <item index="4" class="java.lang.String" itemvalue="Ruby.tree_searcher" />
     </list>
     <recent_temporary>
-      <list size="4">
-        <item index="0" class="java.lang.String" itemvalue="Ruby.node_renderer" />
-        <item index="1" class="java.lang.String" itemvalue="Ruby.tree_builder" />
-        <item index="2" class="java.lang.String" itemvalue="Ruby.tag_parser2" />
-        <item index="3" class="java.lang.String" itemvalue="Ruby.tag_parser" />
+      <list size="5">
+        <item index="0" class="java.lang.String" itemvalue="Ruby.tree_searcher" />
+        <item index="1" class="java.lang.String" itemvalue="Ruby.node_renderer" />
+        <item index="2" class="java.lang.String" itemvalue="Ruby.tree_builder" />
+        <item index="3" class="java.lang.String" itemvalue="Ruby.tag_parser2" />
+        <item index="4" class="java.lang.String" itemvalue="Ruby.tag_parser" />
       </list>
     </recent_temporary>
   </component>
@@ -385,12 +408,12 @@
       <option name="presentableId" value="Default" />
       <updated>1483652408837</updated>
       <workItem from="1483652410122" duration="7306000" />
-      <workItem from="1483905455694" duration="1605000" />
+      <workItem from="1483905455694" duration="1710000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="8911000" />
+    <option name="totallyTimeSpent" value="9016000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -410,7 +433,7 @@
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.30608696" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.30608696" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3281493" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
@@ -493,8 +516,16 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/lib/node_renderer.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-187">
+        <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/tree_searcher.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="251">
+          <caret line="79" column="0" lean-forward="false" selection-start-line="79" selection-start-column="0" selection-end-line="79" selection-end-column="0" />
           <folding />
         </state>
       </provider>
