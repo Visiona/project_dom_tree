@@ -1,5 +1,4 @@
 require_relative "html_loader"
-require_relative "dom_rebuilder"
 
 class DOMReader
   attr_reader :root, :type, :classes, :id, :name, :text_content, :children, :parents, :nodes_number
