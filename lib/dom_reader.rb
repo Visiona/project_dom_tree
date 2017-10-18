@@ -15,20 +15,20 @@ class DOMReader
     document = load_html(file_location)
     root = build_root(document)
     current_node = root
-    current_html = remaininng_html(document)
+    current_html = remaining_html(document)
     while current_html.length > 0
       if detect_first_open_tag(current_html)
         current_node = building_tag_child(current_node, current_html)
-        current_html = remaininng_html(current_html)
+        current_html = remaining_html(current_html)
         current_node = current_node.children.last
         @nodes_number += 1
       elsif detect_first_close_tag(current_html)
         current_node = current_node.parents
-        current_html = remaininng_html(current_html)
+        current_html = remaining_html(current_html)
       elsif detect_first_text(current_html)
         @nodes_number += 1
         current_node = building_text_child(current_node, current_html)
-        current_html = remaininng_html(current_html)
+        current_html = remaining_html(current_html)
       end
     end
     root
@@ -92,7 +92,7 @@ class DOMReader
     current_node
   end
 
-  def remaininng_html(document)
+  def remaining_html(document)
     case
     when detect_first_open_tag(document)
       document[(/>/ =~ document) + 1 .. -1]
